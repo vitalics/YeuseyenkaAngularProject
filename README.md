@@ -6,6 +6,12 @@
 ## technology stack:
   - database: microsoft sql (sql) 
   - backend: ASP.NET (C#)
-  - frontend: angular (typescript) + redux
+  - frontend: angular (typescript) + redux + effects(rxSaga)
+## Run backend + database:
+
+  - open visual studio in `backend` folder
+  - run IIS Server
+  - if port is not `localhost:55686`, change inside `frontend/src/environments` folders strings for backend call
+
 ## Run frontend:
-## Run backend + database
+watch `README.MD` inside frontend folder
