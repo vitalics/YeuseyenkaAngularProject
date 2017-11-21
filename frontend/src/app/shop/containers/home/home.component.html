@@ -1,0 +1,10 @@
+<div *ngIf="loading$ | async">Loading...</div>
+<button class="getItems" (click)='getItems()'>get items</button>
+<div *ngIf='loaded$| async'>
+    <div *ngFor='let item of items'>
+        <div class="item">
+            <p>{{item.id}}</p>
+            <p>{{item.title}}</p>
+        </div>
+    </div>
+</div>
