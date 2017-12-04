@@ -1,17 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Item } from '@shop/item';
 
-const mockItems: Item[] = [
-  {
-    id: 1,
-    name: 'some item',
-    description: 'description for site'
-  },
-  {
-    id: 2,
-    name: 'some item2'
-  }
-];
+// вынесли в фаил константу
+import { mockItems } from './constant';
 
 @Injectable()
 export class ShopService {

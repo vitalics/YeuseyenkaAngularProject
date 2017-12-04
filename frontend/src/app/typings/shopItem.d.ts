@@ -4,4 +4,8 @@ declare module "@shop/item" {
     name: string;
     description?: string;
   }
+  // расширяем обычный Item
+  export interface BasketItem extends Item {
+    basketId: number;
+  }
 }

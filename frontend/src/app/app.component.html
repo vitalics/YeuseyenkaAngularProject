@@ -5,15 +5,22 @@
   <!-- Welcome to app -->
   Welcome to {{ title }}!
 </h1>
-<!-- теперь будет это все эквивалентно записи ниже -->
-<app-shop-list></app-shop-list>
-
-<!-- <div class="shopList" *ngFor="let item of shopList"> -->
-  <!-- эквивалентно записи в коментариях -->
-  <!-- <app-shop-item [shopItem]='item'></app-shop-item> -->
-  <!-- <div class="shopItem">
-    <div class="shopItem-id">{{item.id}}</div>
-    <div class="shopItem-name"> {{item.name}} </div>
-    <div class="shopItem-description" *ngIf="item.description"> {{item.description}} </div>
-  </div> -->
-<!-- </div> -->
+<div class="menu">
+  <ul>
+    <!-- routerLinkActive - свойство роутинга. active значит что с роутинг активен-->
+    <li class="menu_link" role="presentation" [routerLinkActive]="['active']">
+      <!-- routerLink - свойство ссылки, открываемой по пути. в данном случае localhost:4200/home -->
+      <a [routerLink]="['/home']">home</a>
+    </li>
+    <li class="menu_link" role="presentation" [routerLinkActive]="['active']">
+      <a [routerLink]="['/shop']">shop</a>
+    </li>
+    <li class="menu_link" role="presentation" [routerLinkActive]="['active']">
+      <a [routerLink]="['/basket']">basket</a>
+    </li>
+  </ul>
+</div>
+<div class="content">
+  <!-- ангуар прочитает app.routing.module и подставит нужные компоненты -->
+  <router-outlet></router-outlet>
+</div>

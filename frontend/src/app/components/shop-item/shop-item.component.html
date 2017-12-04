@@ -1,5 +1,11 @@
-<div class="shopItem">
+<!-- вызываем метод. передаем наш предмет -->
+<div class="shopItem" (click)="getItem(shopItem)">
     <div class="shopItem-id">{{shopItem.id}}</div>
     <div class="shopItem-name">{{shopItem.name}}</div>
     <div class="shopItem-descroption" *ngIf="shopItem.description">{{shopItem.description}}</div>
+</div>
+<div class="actions">
+    <div class="action_addToBasket">
+        <button (click)="addToBasket(shopItem)"> Add item to Basket</button>
+    </div>
 </div>

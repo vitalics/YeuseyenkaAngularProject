@@ -3,24 +3,49 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-import { ShopService } from './services/shop.service';
+import {
+  ShopService,
+  BasketService,
+} from './services/';
 // удобный импорт, мы бурем все экспорты из фаила index.ts
-import { ShopItemComponent } from './components';
-import { ShopListComponent } from './containers';
+import {
+  ShopItemComponent,
+  BasketItemComponent
+} from './components';
+import {
+  ShopListComponent,
+  BasketListComponent,
+  HomeComponent
+} from './containers';
+
+// импортируем модуль с роутингом
+import { AppRoutingModule } from './app-routing.module';
 
 // declarate all of components, services, pipes
 @NgModule({
   declarations: [
     AppComponent,
     ShopItemComponent,
-    ShopListComponent
+    ShopListComponent,
+    // компоненты корзины
+    BasketListComponent,
+    BasketItemComponent,
+    // домашний компонент
+    HomeComponent
   ],
-  imports: [BrowserModule],
+  imports: [
+    BrowserModule,
+    // т.к. это модуль, его пишем в imports
+    // здесь подключаются и third-party модули для angular
+    AppRoutingModule
+  ],
   providers: [
     // Здесь декларируем сервисы
-    ShopService
+    ShopService,
+    // сервис по работе с корзиной
+    BasketService,
   ],
-  // root component
+  // run component
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
