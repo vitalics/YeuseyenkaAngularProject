@@ -1,5 +1,5 @@
 <!-- вызываем метод. передаем наш предмет -->
-<div class="shopItem" (click)="getItem(shopItem)">
+<!-- <div class="shopItem" (click)="getItem(shopItem)">
     <div class="shopItem-id">{{shopItem.id}}</div>
     <div class="shopItem-name">{{shopItem.name}}</div>
     <div class="shopItem-descroption" *ngIf="shopItem.description">{{shopItem.description}}</div>
@@ -8,4 +8,21 @@
     <div class="action_addToBasket">
         <button (click)="addToBasket(shopItem)"> Add item to Basket</button>
     </div>
-</div>
+</div> -->
+<mat-card class="shopItem" (click)="getItem(shopItem)">
+  <mat-card-header>
+    <mat-card-title>{{shopItem.name}}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src="{{shopItem.imageUrl}}">
+  <mat-card-content>
+    <p *ngIf="shopItem.description">
+      {{shopItem.description}}
+    </p>
+    <p *ngIf="!shopItem.description">
+      no description for this item from shop
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="addToBasket(shopItem)">Add to basket</button>
+  </mat-card-actions>
+</mat-card>

@@ -1,4 +1,7 @@
 <h1>Basket List</h1>
-<div class="basketList" *ngFor="let basketItem of basketList">
+<button mat-button (click)="save()">Save to storage</button>
+<div class="list">
+  <div class="basketList" *ngFor="let basketItem of basketList">
     <app-basket-item [basketItem]='basketItem' (basketRemoved)="onBasketRemoved($event, basketItem)"></app-basket-item>
+  </div>
 </div>

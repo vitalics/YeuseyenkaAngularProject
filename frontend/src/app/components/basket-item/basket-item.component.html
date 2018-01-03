@@ -1,13 +1,28 @@
-<div class="basketItem" *ngIf="basketItem">
+<!-- <div class="basketItem" *ngIf="basketItem">
     <div class="basketItem__basketId">{{basketItem.basketId}}</div>
     <div class="basketItem__id">{{basketItem.id}}</div>
     <div class="basketItem__name">{{basketItem.name}}</div>
     <div class="basketItem__description" *ngIf="basketItem.description">{{basketItem.description}}</div>
     <div class="basterItem-actions">
         <div class="basterItem-action__remove">
-            <!-- кнопка для удаления -->
             <button (click)="removeBasketItem(basketItem)"> remove item from Basket</button>
         </div>
     </div>
-</div>
-<hr>
+</div> -->
+<mat-card class="basketItem">
+  <mat-card-header>
+    <mat-card-title>{{basketItem.name}}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src="{{basketItem.imageUrl}}">
+  <mat-card-content>
+    <p *ngIf="basketItem.description">
+      {{basketItem.description}}
+    </p>
+    <p *ngIf="!basketItem.description">
+      no description for this item from shop
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="removeBasketItem(basketItem)">remove item from Basket</button>
+  </mat-card-actions>
+</mat-card>

@@ -1,11 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MaterialModule } from './material.module';
 
 import { AppComponent } from './app.component';
 
 import {
   ShopService,
   BasketService,
+  BasketSaverService
 } from './services/';
 // удобный импорт, мы бурем все экспорты из фаила index.ts
 import {
@@ -37,13 +41,16 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     // т.к. это модуль, его пишем в imports
     // здесь подключаются и third-party модули для angular
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [
     // Здесь декларируем сервисы
     ShopService,
     // сервис по работе с корзиной
     BasketService,
+    BasketSaverService
   ],
   // run component
   bootstrap: [AppComponent]

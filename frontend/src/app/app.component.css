@@ -1,0 +1,9 @@
+.menu_link{
+  margin: 10px;
+}
+ul{
+  padding-left: 10px;
+}
+app-shop-list{
+  display: flex;
+}
