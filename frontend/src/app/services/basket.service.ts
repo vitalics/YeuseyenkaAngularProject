@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Item, BasketItem } from '@shop/item';
 import { mockItems } from './constant';
 
-let GlobalId = 0;
 const basketList: BasketItem[] = JSON.parse(localStorage.getItem('basket')) || [];
 @Injectable()
 export class BasketService {
@@ -10,26 +9,28 @@ export class BasketService {
   }
 
   public addItemToBasket(shopItem: Item): void {
-    // создаем новый объект
-    const addableItem = Object.assign({}, {
-      ...shopItem,
-      basketId: GlobalId
-    });
-    // добавляем в массив
-    basketList.push(addableItem);
-    GlobalId++;
+    const sameItem: BasketItem = basketList.find(item => item.id === shopItem.id);
+    let addableItem: BasketItem;
+    if (sameItem) {
+      sameItem.count += 1;
+    } else {
+      addableItem = Object.assign({}, {
+        ...shopItem,
+        count: 1
+      });
+      basketList.push(addableItem);
+    }
   }
-  public removeItemFromBasket(item: BasketItem): void {
-    // невозможно удалить из пустого массива предмет
+  public removeItemFromBasket(basketItem: BasketItem): void {
     if (basketList.length <= 0) {
       throw new Error('basket is empty');
     }
-    // удаляем из массива по basketId один предмет
-    // метод splice не удаляет элемент, если он единственный
-    if (basketList.length === 1) {
-      basketList.pop();
-    } else {
-      basketList.splice(item.basketId, 1);
+    if (basketItem.count === 1) {
+      const findableIndex = basketList.findIndex(item => item.id === basketItem.id);
+      basketList.splice(findableIndex, 1);
+      // basketList.pop();
+    } else if (basketItem.count > 1) {
+      basketItem.count -= 1;
     }
   }
   public getBasketItems(): BasketItem[] {
