@@ -27,11 +27,11 @@ export class ShopListComponent implements OnInit {
     // изначально карзина пуста
     console.log(this.basketService.getBasketItems());
 
+    // Подписываемся на изменения в потоке данных
     this.thread$.subscribe((searchRequest: string) => {
       this.searchItem(searchRequest);
     })
   }
-
 
   // обрабатываем наш предмет из магазина. Выводим в консоль
   public onShopItemClicked(shopItem: Item): void {
@@ -48,8 +48,6 @@ export class ShopListComponent implements OnInit {
 
   // Метод который выбирает элементы
   private searchItem(term: string) {
-    console.log(term);
-    // debugger;
     if (term == '') {
       this.shopList = this.shopService.getItems();
     } else {

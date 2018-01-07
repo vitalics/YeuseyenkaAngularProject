@@ -1,5 +1,7 @@
-<div class="shopList" *ngFor="let item of shopList">
-    <!-- подписываемся на событие shopItemClicked (см. component/shop-item/shop-item.component.ts) -->
-    <!-- подписываемся на shopItemAddToBasket событие -->
-    <app-shop-item [shopItem]='item' (ShopItemClicked)="onShopItemClicked($event,item)" (shopItemAddToBasket)="onShopItemAddToBasket($event,item)"></app-shop-item>
+<div class="shopList-wrapper">
+    <div class="shopList" *ngFor="let item of shopList">
+        <!-- подписываемся на событие shopItemClicked (см. component/shop-item/shop-item.component.ts) -->
+        <!-- подписываемся на shopItemAddToBasket событие -->
+        <app-shop-item [shopItem]='item' (ShopItemClicked)="onShopItemClicked($event,item)" (shopItemAddToBasket)="onShopItemAddToBasket($event,item)"></app-shop-item>
+    </div>
 </div>
