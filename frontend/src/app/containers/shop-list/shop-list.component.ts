@@ -1,4 +1,4 @@
-import {BasketSaverService} from '../../services/basketSaver.service';
+import { BasketSaverService } from '../../services/basketSaver.service';
 import { Component, OnInit } from '@angular/core';
 
 import { ShopService, BasketService } from '../../services';
