@@ -29,7 +29,11 @@ export class ShopListComponent implements OnInit {
 
     // Подписываемся на изменения в потоке данных
     this.thread$.subscribe((searchRequest: string) => {
-      this.searchItem(searchRequest);
+      if (this.current != searchRequest) {
+        this.searchItem('');
+        this.current = searchRequest;
+        this.searchItem(searchRequest);
+      }
     })
   }
 
@@ -45,13 +49,17 @@ export class ShopListComponent implements OnInit {
     // сохраняем результат при добавлении в корзину
     this.basketSaveService.save(this.basketService.getBasketItems());
   }
-
+  private current: string = '';
   // Метод который выбирает элементы
   private searchItem(term: string) {
     if (term == '') {
       this.shopList = this.shopService.getItems();
     } else {
-      this.shopList = this.shopList.filter((value: Item) => value.name === term);
+      this.shopList = this.shopList.filter((value: Item) => {
+        if (value.name.indexOf(term) != -1) {
+          return value;
+        };
+      })
     }
   }
 }

@@ -38,7 +38,7 @@ export const mockItems: Item[] = [
   },
   {
     id: 6,
-    name: 'HENRIKSDAL',
+    name: 'RENBNGGET',
     // tslint:disable-next-line:max-line-length
     description: 'After long, engaging meals it’s good to know the covers are washable. HENRIKSDAL is probably our most comfortable chair! Every time you sit down you will be reminded of the relaxing, cushiony softness.',
     imageUrl: 'http://www.ikea.com/us/en/images/products/henriksdal-chair-turquoise__0462840_PE608341_S4.JPG'

@@ -6,13 +6,13 @@ import { mockItems } from './constant';
 
 @Injectable()
 export class ShopService {
-  constructor() {}
+  constructor() { }
 
   public getItems(): Item[] {
     return mockItems;
   }
   public getItemById(id: number): Item {
-      // находим нужный элемент
+    // находим нужный элемент
     const searhableItem = mockItems.find(item => item.id === id);
     return searhableItem;
   }
