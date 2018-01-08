@@ -1,5 +1,5 @@
 import { BasketSaverService } from '../../services/basketSaver.service';
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { ShopService, BasketService } from '../../services';
 import { Item } from '@shop/item';
@@ -12,8 +12,6 @@ import { Subject } from 'rxjs/Subject';
   encapsulation: ViewEncapsulation.None
 })
 export class ShopListComponent implements OnInit {
-  @Input() public thread$: Subject<any>;
-
   public shopList: Item[] = [];
 
   constructor(
@@ -23,18 +21,12 @@ export class ShopListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.shopList = this.shopService.getItems();
+    this.shopService.getItems().subscribe((items: Item[]) => {
+      this.shopList = items;
+    });
+    this.shopService.searchItems('');
     // изначально карзина пуста
     console.log(this.basketService.getBasketItems());
-
-    // Подписываемся на изменения в потоке данных
-    this.thread$.subscribe((searchRequest: string) => {
-      if (this.current != searchRequest) {
-        this.searchItem('');
-        this.current = searchRequest;
-        this.searchItem(searchRequest);
-      }
-    })
   }
 
   // обрабатываем наш предмет из магазина. Выводим в консоль
@@ -48,18 +40,5 @@ export class ShopListComponent implements OnInit {
     console.log(this.basketService.getBasketItems());
     // сохраняем результат при добавлении в корзину
     this.basketSaveService.save(this.basketService.getBasketItems());
-  }
-  private current: string = '';
-  // Метод который выбирает элементы
-  private searchItem(term: string) {
-    if (term == '') {
-      this.shopList = this.shopService.getItems();
-    } else {
-      this.shopList = this.shopList.filter((value: Item) => {
-        if (value.name.indexOf(term) != -1) {
-          return value;
-        };
-      })
-    }
   }
 }

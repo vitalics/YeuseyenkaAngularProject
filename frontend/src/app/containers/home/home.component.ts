@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { Subject } from 'rxjs/Subject';
+import { ShopService } from '../../services';
 
 @Component({
     selector: 'app-home',
@@ -11,15 +12,15 @@ import { Subject } from 'rxjs/Subject';
 export class HomeComponent {
     // Заносим HTML элимент с атрибутам id='input' в переменную
     public inputElement = document.querySelector('#input');
-    // Создаём переменную для потока данных
-    public thread$: Subject<any> = new Subject();
+
+    constructor(private shopService: ShopService) { }
 
     onKey(event: any) {
-        let text = event.target.value;
+        const text = event.target.value;
         if (text.length > 2) {
-            this.thread$.next(text);
+            this.shopService.searchItems(text);
         } else {
-            this.thread$.next('');
+            this.shopService.searchItems('');
         }
     }
 }
